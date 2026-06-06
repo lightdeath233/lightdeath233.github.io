@@ -1,6 +1,8 @@
 let data;
 let chart;
-let currentHero = null;
+
+// ⭐ 单选 → 多选
+let selectedHeroes = [];
 
 // =======================
 // 1. 读取 JSON 数据
@@ -42,8 +44,11 @@ function init() {
     renderGrid();
     renderRanking();
 
+    // ⭐ 默认选一个英雄
     if (data.heroes.length > 0) {
-        selectHero(data.heroes[0]);
+        selectedHeroes.push(data.heroes[0]);
+        updateSelectedHeroText();
+        renderChart();
     }
 }
 
@@ -83,7 +88,7 @@ function renderGrid() {
             `;
 
             div.onclick = () => {
-                selectHero(hero);
+                toggleHero(hero);
                 closeModal();
             };
 
@@ -93,21 +98,42 @@ function renderGrid() {
 
 
 // =======================
-// 5. 选择英雄
+// ⭐ 5. 多英雄选择 / 取消
 // =======================
-function selectHero(hero) {
+function toggleHero(hero) {
 
-    currentHero = hero;
+    const index = selectedHeroes.findIndex(h => h.name === hero.name);
 
-    document.getElementById("selectedHero").innerText =
-        "当前英雄：" + hero.name;
+    if (index > -1) {
+        selectedHeroes.splice(index, 1); // 取消选择
+    } else {
+        selectedHeroes.push(hero); // 添加选择
+    }
 
+    updateSelectedHeroText();
     renderChart();
 }
 
 
 // =======================
-// 6. 全局平均Rank
+// ⭐ 6. 显示已选英雄
+// =======================
+function updateSelectedHeroText() {
+
+    const el = document.getElementById("selectedHero");
+
+    if (selectedHeroes.length === 0) {
+        el.innerText = "当前英雄：未选择";
+        return;
+    }
+
+    el.innerText =
+        "已选：" + selectedHeroes.map(h => h.name).join("、");
+}
+
+
+// =======================
+// 7. 全局平均Rank
 // =======================
 function calcAverage() {
 
@@ -137,7 +163,7 @@ function calcAverage() {
 
 
 // =======================
-// 7. 单英雄平均Rank
+// 8. 单英雄平均Rank
 // =======================
 function calcHeroAverage(hero) {
 
@@ -156,7 +182,7 @@ function calcHeroAverage(hero) {
 
 
 // =======================
-// 8. 排行榜数据
+// 9. 排行榜数据
 // =======================
 function getHeroRanking() {
 
@@ -176,7 +202,7 @@ function getHeroRanking() {
 
 
 // =======================
-// 9. 渲染排行榜（搜索不改变真实排名）
+// 10. 渲染排行榜
 // =======================
 function renderRanking() {
 
@@ -190,9 +216,7 @@ function renderRanking() {
 
     list.forEach(item => {
 
-        const avgText = (item.avg !== null && item.avg !== undefined)
-            ? item.avg.toFixed(2)
-            : "-";
+        const avgText = item.avg?.toFixed(2) ?? "-";
 
         panel.innerHTML += `
             <div class="rank-item">
@@ -207,17 +231,44 @@ function renderRanking() {
 
 
 // =======================
-// 10. 图表渲染
+// ⭐ 11. 图表渲染（多曲线核心）
 // =======================
 function renderChart() {
 
-    if (!currentHero) return;
-
     const avgData = calcAverage();
+
+    const series = [];
+
+    // ⭐ 多英雄曲线
+    selectedHeroes.forEach(hero => {
+
+        series.push({
+            name: hero.name,
+            type: "line",
+            data: hero.ranks,
+            smooth: true,
+            symbol: "circle",
+            symbolSize: 5,
+            lineStyle: { width: 2 }
+        });
+    });
+
+    // ⭐ 全局平均
+    series.push({
+        name: "全局平均Rank",
+        type: "line",
+        data: avgData,
+        smooth: true,
+        symbol: "none",
+        lineStyle: {
+            type: "dashed",
+            width: 2
+        }
+    });
 
     chart.setOption({
         title: {
-            text: currentHero.name + " 强度变化趋势",
+            text: "英雄强度对比分析",
             left: "center"
         },
 
@@ -226,7 +277,10 @@ function renderChart() {
         },
 
         legend: {
-            data: ["英雄Rank", "全局平均Rank"],
+            data: [
+                ...selectedHeroes.map(h => h.name),
+                "全局平均Rank"
+            ],
             top: 30
         },
 
@@ -248,36 +302,13 @@ function renderChart() {
             min: 1
         },
 
-        series: [
-            {
-                name: "英雄Rank",
-                type: "line",
-                data: currentHero.ranks,
-                smooth: true,
-                symbol: "circle",
-                symbolSize: 6,
-                lineStyle: { width: 3 },
-                connectNulls: false
-            },
-
-            {
-                name: "全局平均Rank",
-                type: "line",
-                data: avgData,
-                smooth: true,
-                symbol: "none",
-                lineStyle: {
-                    type: "dashed",
-                    width: 2
-                }
-            }
-        ]
+        series
     });
 }
 
 
 // =======================
-// 11. 自适应
+// 12. 自适应
 // =======================
 window.addEventListener("resize", () => {
     if (chart) chart.resize();

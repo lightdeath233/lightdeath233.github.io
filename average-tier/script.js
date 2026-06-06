@@ -1,7 +1,7 @@
 let data;
 let chart;
 
-// ⭐ 单选 → 多选
+// ⭐ 多选英雄状态
 let selectedHeroes = [];
 
 // =======================
@@ -34,11 +34,13 @@ function init() {
     document.getElementById("rankSearchInput")
         .addEventListener("input", renderRanking);
 
+    // ⭐ 清空按钮（关键修复）
+    document.getElementById("clearSelect")
+        .addEventListener("click", clearSelection);
+
     document.getElementById("modal")
         .addEventListener("click", (e) => {
-            if (e.target.id === "modal") {
-                closeModal();
-            }
+            if (e.target.id === "modal") closeModal();
         });
 
     renderGrid();
@@ -46,7 +48,7 @@ function init() {
 
     // ⭐ 默认选一个英雄
     if (data.heroes.length > 0) {
-        selectedHeroes.push(data.heroes[0]);
+        selectedHeroes = [data.heroes[0]];
         updateSelectedHeroText();
         renderChart();
     }
@@ -54,7 +56,7 @@ function init() {
 
 
 // =======================
-// 3. 打开 / 关闭弹窗
+// 打开 / 关闭弹窗
 // =======================
 function openModal() {
     document.getElementById("modal").classList.remove("hidden");
@@ -66,7 +68,7 @@ function closeModal() {
 
 
 // =======================
-// 4. 英雄列表（搜索）
+// ⭐ 英雄列表（带选中状态）
 // =======================
 function renderGrid() {
 
@@ -79,18 +81,21 @@ function renderGrid() {
         .filter(hero => hero.name.includes(keyword))
         .forEach(hero => {
 
+            const isSelected = selectedHeroes.some(h => h.name === hero.name);
+
             const div = document.createElement("div");
             div.className = "hero-item";
 
+            div.style.border = isSelected
+                ? "2px solid #1677ff"
+                : "1px solid transparent";
+
             div.innerHTML = `
-                <img src="${hero.avatar}" alt="${hero.name}">
+                <img src="${hero.avatar}">
                 <div>${hero.name}</div>
             `;
 
-            div.onclick = () => {
-                toggleHero(hero);
-                closeModal();
-            };
+            div.onclick = () => toggleHero(hero);
 
             grid.appendChild(div);
         });
@@ -98,25 +103,26 @@ function renderGrid() {
 
 
 // =======================
-// ⭐ 5. 多英雄选择 / 取消
+// ⭐ 多选切换
 // =======================
 function toggleHero(hero) {
 
     const index = selectedHeroes.findIndex(h => h.name === hero.name);
 
     if (index > -1) {
-        selectedHeroes.splice(index, 1); // 取消选择
+        selectedHeroes.splice(index, 1);
     } else {
-        selectedHeroes.push(hero); // 添加选择
+        selectedHeroes.push(hero);
     }
 
     updateSelectedHeroText();
+    renderGrid();
     renderChart();
 }
 
 
 // =======================
-// ⭐ 6. 显示已选英雄
+// ⭐ 显示已选英雄
 // =======================
 function updateSelectedHeroText() {
 
@@ -133,7 +139,22 @@ function updateSelectedHeroText() {
 
 
 // =======================
-// 7. 全局平均Rank
+// ⭐ 清空选择（关键修复）
+// =======================
+function clearSelection() {
+
+    selectedHeroes = [];
+
+    updateSelectedHeroText();
+    renderGrid();
+
+    chart.clear();
+    renderChart();
+}
+
+
+// =======================
+// ⭐ 全局平均Rank
 // =======================
 function calcAverage() {
 
@@ -163,7 +184,7 @@ function calcAverage() {
 
 
 // =======================
-// 8. 单英雄平均Rank
+// ⭐ 单英雄平均
 // =======================
 function calcHeroAverage(hero) {
 
@@ -182,7 +203,7 @@ function calcHeroAverage(hero) {
 
 
 // =======================
-// 9. 排行榜数据
+// ⭐ 排行榜
 // =======================
 function getHeroRanking() {
 
@@ -202,7 +223,7 @@ function getHeroRanking() {
 
 
 // =======================
-// 10. 渲染排行榜
+// ⭐ 排行榜渲染
 // =======================
 function renderRanking() {
 
@@ -212,48 +233,47 @@ function renderRanking() {
     const list = getHeroRanking()
         .filter(item => item.name.includes(keyword));
 
-    panel.innerHTML = "";
-
-    list.forEach(item => {
-
-        const avgText = item.avg?.toFixed(2) ?? "-";
-
-        panel.innerHTML += `
-            <div class="rank-item">
-                <div style="width:40px;">#${item.rank}</div>
-                <img src="${item.avatar}" alt="">
-                <div style="flex:1">${item.name}</div>
-                <div>${avgText}</div>
-            </div>
-        `;
-    });
+    panel.innerHTML = list.map(item => `
+        <div class="rank-item">
+            <div style="width:40px;">#${item.rank}</div>
+            <img src="${item.avatar}">
+            <div style="flex:1">${item.name}</div>
+            <div>${item.avg.toFixed(2)}</div>
+        </div>
+    `).join("");
 }
 
 
 // =======================
-// ⭐ 11. 图表渲染（多曲线核心）
+// ⭐ 图表核心（多曲线）
 // =======================
 function renderChart() {
 
+    // ⭐ 空状态保护
+    if (selectedHeroes.length === 0) {
+        chart.clear();
+        chart.setOption({
+            title: {
+                text: "请选择英雄进行对比",
+                left: "center",
+                top: "center"
+            }
+        });
+        return;
+    }
+
     const avgData = calcAverage();
 
-    const series = [];
+    const series = selectedHeroes.map(hero => ({
+        name: hero.name,
+        type: "line",
+        data: hero.ranks,
+        smooth: true,
+        symbol: "circle",
+        symbolSize: 5,
+        lineStyle: { width: 2 }
+    }));
 
-    // ⭐ 多英雄曲线
-    selectedHeroes.forEach(hero => {
-
-        series.push({
-            name: hero.name,
-            type: "line",
-            data: hero.ranks,
-            smooth: true,
-            symbol: "circle",
-            symbolSize: 5,
-            lineStyle: { width: 2 }
-        });
-    });
-
-    // ⭐ 全局平均
     series.push({
         name: "全局平均Rank",
         type: "line",
@@ -277,10 +297,7 @@ function renderChart() {
         },
 
         legend: {
-            data: [
-                ...selectedHeroes.map(h => h.name),
-                "全局平均Rank"
-            ],
+            data: [...selectedHeroes.map(h => h.name), "全局平均Rank"],
             top: 30
         },
 
@@ -303,12 +320,14 @@ function renderChart() {
         },
 
         series
+    }, {
+        notMerge: true
     });
 }
 
 
 // =======================
-// 12. 自适应
+// resize
 // =======================
 window.addEventListener("resize", () => {
     if (chart) chart.resize();

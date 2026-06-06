@@ -131,6 +131,16 @@
             border: 1px solid #ccc;
         }
 
+        /* ⭐ 已选预览区域 */
+        #selectedPreview {
+            font-size: 13px;
+            margin-bottom: 10px;
+            color: #333;
+            background: #f7f7f7;
+            padding: 6px;
+            border-radius: 6px;
+        }
+
         #heroGrid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -143,6 +153,7 @@
             padding: 6px;
             border-radius: 10px;
             transition: 0.2s;
+            border: 1px solid transparent;
         }
 
         .hero-item:hover {
@@ -160,6 +171,19 @@
             font-size: 12px;
             margin-top: 4px;
         }
+
+        /* ⭐ 按钮区 */
+        .modal-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .modal-actions button {
+            flex: 1;
+            margin: 5px;
+        }
+
     </style>
 </head>
 
@@ -172,7 +196,12 @@
         <!-- 工具栏 -->
         <div class="toolbar">
             <button id="openPicker">选择英雄</button>
+
+            <!-- ⭐ 当前选择显示 -->
             <div id="selectedHero">当前英雄：未选择</div>
+
+            <!-- ⭐ 清空按钮 -->
+            <button id="clearSelect">清空选择</button>
         </div>
 
         <!-- 图表 -->
@@ -195,7 +224,16 @@
 
             <input type="text" id="searchInput" placeholder="搜索英雄..." />
 
+            <!-- ⭐ 已选预览 -->
+            <div id="selectedPreview">未选择任何英雄</div>
+
             <div id="heroGrid"></div>
+
+            <!-- ⭐ 操作按钮 -->
+            <div class="modal-actions">
+                <button id="confirmSelect">确认选择</button>
+                <button onclick="closeModal()">取消</button>
+            </div>
 
         </div>
     </div>

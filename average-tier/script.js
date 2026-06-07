@@ -2,12 +2,13 @@ let data;
 let chart;
 
 // ⭐ 多选英雄状态
-let selectedHeroes = [];
+let selectedHeroes = [];      // 已确认选择
+let tempSelectedHeroes = [];  // 弹窗临时选择
 
 // =======================
 // 1. 读取 JSON 数据
 // =======================
-fetch("./heroes.json")
+fetch("./heroes.json?v=1.0.0")
     .then(res => res.json())
     .then(json => {
         data = json;
@@ -34,21 +35,21 @@ function init() {
     document.getElementById("rankSearchInput")
         .addEventListener("input", renderRanking);
 
-    // ⭐ 清空按钮（关键修复）
     document.getElementById("clearSelect")
         .addEventListener("click", clearSelection);
 
-    document.getElementById("modal")
-        .addEventListener("click", (e) => {
-            if (e.target.id === "modal") closeModal();
-        });
+    document.getElementById("confirmSelect")
+        .addEventListener("click", confirmSelection);
 
     renderGrid();
     renderRanking();
 
     // ⭐ 默认选一个英雄
     if (data.heroes.length > 0) {
+
         selectedHeroes = [data.heroes[0]];
+        tempSelectedHeroes = [...selectedHeroes];
+
         updateSelectedHeroText();
         renderChart();
     }
@@ -59,7 +60,14 @@ function init() {
 // 打开 / 关闭弹窗
 // =======================
 function openModal() {
-    document.getElementById("modal").classList.remove("hidden");
+
+    tempSelectedHeroes = [...selectedHeroes];
+
+    document.getElementById("modal")
+        .classList.remove("hidden");
+
+    renderGrid();
+    updatePreview();
 }
 
 function closeModal() {
@@ -81,7 +89,7 @@ function renderGrid() {
         .filter(hero => hero.name.includes(keyword))
         .forEach(hero => {
 
-            const isSelected = selectedHeroes.some(h => h.name === hero.name);
+            const isSelected = tempSelectedHeroes.some(h => h.name === hero.name);
 
             const div = document.createElement("div");
             div.className = "hero-item";
@@ -107,17 +115,56 @@ function renderGrid() {
 // =======================
 function toggleHero(hero) {
 
-    const index = selectedHeroes.findIndex(h => h.name === hero.name);
+    const index =
+        tempSelectedHeroes.findIndex(
+            h => h.name === hero.name
+        );
 
     if (index > -1) {
-        selectedHeroes.splice(index, 1);
+        tempSelectedHeroes.splice(index, 1);
     } else {
-        selectedHeroes.push(hero);
+        tempSelectedHeroes.push(hero);
     }
 
-    updateSelectedHeroText();
     renderGrid();
+    updatePreview();
+}
+
+function updatePreview() {
+
+    const preview =
+        document.getElementById(
+            "selectedPreview"
+        );
+
+    if (!preview) return;
+
+    if (tempSelectedHeroes.length === 0) {
+
+        preview.innerText =
+            "未选择任何英雄";
+
+        return;
+    }
+
+    preview.innerText =
+        "已选："
+        + tempSelectedHeroes
+            .map(h => h.name)
+            .join("、");
+}
+
+function confirmSelection() {
+
+    selectedHeroes = [...tempSelectedHeroes];
+
+    updateSelectedHeroText();
+
+    chart.clear();
+
     renderChart();
+
+    closeModal();
 }
 
 
@@ -126,15 +173,32 @@ function toggleHero(hero) {
 // =======================
 function updateSelectedHeroText() {
 
-    const el = document.getElementById("selectedHero");
+    const el =
+        document.getElementById(
+            "selectedHero"
+        );
 
     if (selectedHeroes.length === 0) {
-        el.innerText = "当前英雄：未选择";
+
+        el.innerText =
+            "当前英雄：未选择";
+
+        return;
+    }
+
+    if (selectedHeroes.length <= 5) {
+
+        el.innerText =
+            "已选："
+            + selectedHeroes
+                .map(h => h.name)
+                .join("、");
+
         return;
     }
 
     el.innerText =
-        "已选：" + selectedHeroes.map(h => h.name).join("、");
+        `已选 ${selectedHeroes.length} 个英雄`;
 }
 
 
@@ -144,11 +208,16 @@ function updateSelectedHeroText() {
 function clearSelection() {
 
     selectedHeroes = [];
+    tempSelectedHeroes = [];
 
     updateSelectedHeroText();
+
     renderGrid();
 
+    updatePreview();
+
     chart.clear();
+
     renderChart();
 }
 

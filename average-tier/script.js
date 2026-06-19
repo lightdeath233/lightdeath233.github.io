@@ -393,13 +393,13 @@ function renderChart() {
 
         grid: {
 
-            left: window.innerWidth < 768 ? 50 : 60,
+            left: window.innerWidth < 768 ? 35 : 60,
 
-            right: 20,
+            right: window.innerWidth < 768 ? 10 : 30,
 
-            top: 90,
+            top: window.innerWidth < 768 ? 80 : 100,
 
-            bottom: window.innerWidth < 768 ? 70 : 40,
+            bottom: window.innerWidth < 768 ? 40 : 50,
 
             containLabel: true
         },

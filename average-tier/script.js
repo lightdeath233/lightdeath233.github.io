@@ -346,7 +346,37 @@ function renderChart() {
         smooth: true,
         symbol: "circle",
         symbolSize: 5,
-        lineStyle: { width: 2 }
+
+        lineStyle: {
+            width: 2
+        },
+
+        markPoint: {
+
+            symbol: "pin",
+
+            symbolSize: 40,
+
+            label: {
+                color: "#fff",
+                fontSize: 10
+            },
+
+            data: [
+
+                {
+                    type: "min",
+                    name: "最强"
+                },
+
+                {
+                    type: "max",
+                    name: "最弱"
+                }
+
+            ]
+        }
+
     }));
 
     series.push({
@@ -381,25 +411,24 @@ function renderChart() {
                 "全局平均Rank"
             ],
 
-            top: 30,
-
             type: "scroll",
 
-            orient:
-                window.innerWidth < 768
-                    ? "horizontal"
-                    : "horizontal"
+            top: 30,
+
+            left: 10,
+
+            right: 10
         },
 
         grid: {
 
-            left: window.innerWidth < 768 ? 35 : 60,
+            left: window.innerWidth < 768 ? 20 : 60,
 
             right: window.innerWidth < 768 ? 10 : 30,
 
-            top: window.innerWidth < 768 ? 80 : 100,
+            top: window.innerWidth < 768 ? 60 : 100,
 
-            bottom: window.innerWidth < 768 ? 40 : 50,
+            bottom: window.innerWidth < 768 ? 20 : 50,
 
             containLabel: true
         },
@@ -412,10 +441,7 @@ function renderChart() {
 
             axisLabel: {
 
-                rotate:
-                    window.innerWidth < 768
-                        ? 45
-                        : 0
+                hideOverlap: true
             }
         },
 

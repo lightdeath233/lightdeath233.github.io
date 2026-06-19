@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0.1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>王者荣耀英雄强度分析系统</title>
 
     <!-- ECharts -->
@@ -140,15 +140,18 @@
 
         .modal-content {
             width: min(900px, 95vw);
-            max-height: 85vh;
-            overflow-y: auto;
+            height: 85vh;
+
             background: white;
             border-radius: 15px;
-            padding: 20px;
+
+            display: flex;
+            flex-direction: column;
         }
 
         #searchInput {
-            width: 100%;
+            margin: 15px 15px 10px;
+            width: calc(100% - 30px);
             box-sizing: border-box;
             padding: 10px;
             border: 1px solid #ccc;
@@ -157,6 +160,7 @@
         }
 
         #selectedPreview {
+            margin:0 15px 10px;
             background: #f7f7f7;
             padding: 10px;
             border-radius: 8px;
@@ -169,6 +173,10 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
             gap: 12px;
+            flex: 1;
+            overflow-y: auto;
+
+            padding: 10px;
         }
 
         .hero-item {
@@ -198,23 +206,36 @@
         /* ================= 底部按钮 ================= */
 
         .modal-actions {
+
+            position: sticky;
+
+            bottom: 0;
+
+            background: white;
+
+            padding: 10px;
+
+            border-top: 1px solid #eee;
+
             display: flex;
+
             gap: 10px;
-            margin-top: 15px;
+
+            z-index: 100;
         }
 
         .modal-actions button {
             flex: 1;
         }
 
-        /* =====================================================
-                    手机端适配
-===================================================== */
-
         @media (max-width:768px) {
 
             body {
-                padding: 10px;
+                padding: 0;
+            }
+
+            .container {
+                padding: 0;
             }
 
             h2 {
@@ -239,7 +260,11 @@
             }
 
             #chart {
-                height: 55vh;
+                width: 100%;
+                height: 85vh;
+                border-radius: 0;
+                box-shadow: none;
+                padding: 0;
             }
 
             #rankPanelWrapper {
@@ -257,12 +282,13 @@
 
             .modal-content {
                 width: 95vw;
-                max-height: 90vh;
-                padding: 15px;
+                height: 90vh;
+                padding: 0;
             }
 
             .modal-actions {
-                flex-direction: column;
+                display: flex;
+                gap: 10px;
             }
 
         }

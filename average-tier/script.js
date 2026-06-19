@@ -24,7 +24,13 @@ fetch("./heroes.json?v=1.0.0")
 // =======================
 function init() {
 
-    chart = echarts.init(document.getElementById("chart"));
+    chart = echarts.init(
+        document.getElementById("chart"),
+        null,
+        {
+            renderer: "canvas"
+        }
+    );
 
     document.getElementById("openPicker")
         .addEventListener("click", openModal);
@@ -362,24 +368,55 @@ function renderChart() {
         },
 
         tooltip: {
-            trigger: "axis"
+
+            trigger: "axis",
+
+            confine: true
         },
 
         legend: {
-            data: [...selectedHeroes.map(h => h.name), "全局平均Rank"],
-            top: 30
+
+            data: [
+                ...selectedHeroes.map(h => h.name),
+                "全局平均Rank"
+            ],
+
+            top: 30,
+
+            type: "scroll",
+
+            orient:
+                window.innerWidth < 768
+                    ? "horizontal"
+                    : "horizontal"
         },
 
         grid: {
-            left: "3%",
-            right: "4%",
-            bottom: "3%",
+
+            left: window.innerWidth < 768 ? 50 : 60,
+
+            right: 20,
+
+            top: 90,
+
+            bottom: window.innerWidth < 768 ? 70 : 40,
+
             containLabel: true
         },
 
         xAxis: {
+
             type: "category",
-            data: data.months
+
+            data: data.months,
+
+            axisLabel: {
+
+                rotate:
+                    window.innerWidth < 768
+                        ? 45
+                        : 0
+            }
         },
 
         yAxis: {
@@ -399,5 +436,11 @@ function renderChart() {
 // resize
 // =======================
 window.addEventListener("resize", () => {
-    if (chart) chart.resize();
+
+    if (!chart) return;
+
+    chart.resize();
+
+    renderChart();
+
 });

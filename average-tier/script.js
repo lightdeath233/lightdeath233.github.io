@@ -6,6 +6,17 @@ let selectedHeroes = [];      // 已确认选择
 let tempSelectedHeroes = [];  // 弹窗临时选择
 
 // =======================
+// 防抖工具函数
+// =======================
+function debounce(fn, delay) {
+    let timer;
+    return function (...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => fn.apply(this, args), delay);
+    };
+}
+
+// =======================
 // 1. 读取 JSON 数据
 // =======================
 fetch("./heroes.json?v=1.0.0")
@@ -36,10 +47,10 @@ function init() {
         .addEventListener("click", openModal);
 
     document.getElementById("searchInput")
-        .addEventListener("input", renderGrid);
+        .addEventListener("input", debounce(renderGrid, 300));
 
     document.getElementById("rankSearchInput")
-        .addEventListener("input", renderRanking);
+        .addEventListener("input", debounce(renderRanking, 300));
 
     document.getElementById("clearSelect")
         .addEventListener("click", clearSelection);

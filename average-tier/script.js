@@ -4,6 +4,7 @@ let chart;
 // ⭐ 多选英雄状态
 let selectedHeroes = [];      // 已确认选择
 let tempSelectedHeroes = [];  // 弹窗临时选择
+let showMarkPoints = true;   // 极值标记显示状态
 
 // =======================
 // 防抖工具函数
@@ -55,6 +56,9 @@ function init() {
     document.getElementById("clearSelect")
         .addEventListener("click", clearSelection);
 
+    document.getElementById("toggleMark")
+        .addEventListener("click", toggleMarkPoints);
+    
     document.getElementById("confirmSelect")
         .addEventListener("click", confirmSelection);
 
@@ -238,6 +242,22 @@ function clearSelection() {
     renderChart();
 }
 
+// =======================
+// 极值标记切换
+// =======================
+function toggleMarkPoints() {
+    showMarkPoints = !showMarkPoints;
+    const btn = document.getElementById("toggleMark");
+    if (showMarkPoints) {
+        btn.textContent = "隐藏极值";
+        btn.classList.remove("active");
+    } else {
+        btn.textContent = "显示极值";
+        btn.classList.add("active");
+    }
+    renderChart();
+}
+
 
 // =======================
 // ⭐ 全局平均Rank
@@ -401,6 +421,11 @@ function renderChart() {
             width: 2
         }
     });
+
+
+    if (!showMarkPoints) {
+        series.forEach(s => delete s.markPoint);
+    }
 
     chart.setOption({
         title: {

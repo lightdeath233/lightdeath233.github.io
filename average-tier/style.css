@@ -58,6 +58,13 @@ button:hover {
     background: #0f5ed7;
 }
 
+#toggleMark {
+    background: #1677ff;
+}
+#toggleMark.active {
+    background: #52c41a;
+}
+
 #selectedHero {
     font-size: 15px;
 }

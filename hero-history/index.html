@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>英雄调整历史</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>英雄调整历史</h2>
+
+        <!-- 工具栏 -->
+        <div class="toolbar">
+            <button id="openPicker">选择英雄</button>
+            <span id="selectedHero">当前英雄：未选择</span>
+            <span id="editModeBadge" class="hidden">编辑模式</span>
+            <button id="exportBtn" class="hidden">导出JSON</button>
+            <button id="importBtn" class="hidden">导入JSON</button>
+            <input type="file" id="importFile" accept=".json" class="hidden">
+        </div>
+
+        <!-- 英雄信息 -->
+        <div id="heroInfo" class="hidden">
+            <img id="heroAvatar" src="" alt="">
+            <div class="hero-info-text">
+                <h3 id="heroName"></h3>
+                <span id="heroCount"></span>
+            </div>
+            <button id="addEntryBtn" class="hidden">+ 添加调整</button>
+        </div>
+
+        <!-- 时间轴 -->
+        <div id="timeline">
+            <div class="empty-state" id="emptyState">请选择一个英雄查看调整历史</div>
+        </div>
+
+    </div>
+
+    <!-- 英雄选择弹窗 -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <input type="text" id="searchInput" placeholder="搜索英雄...">
+            <div id="heroGrid"></div>
+            <div class="modal-actions">
+                <button id="confirmSelect">确认选择</button>
+                <button onclick="closeModal()">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js?v=1.0.0"></script>
+
+</body>
+
+</html>

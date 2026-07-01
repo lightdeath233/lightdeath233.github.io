@@ -192,7 +192,7 @@ async function loadHeroes() {
     allHeroes = HERO_LIST;
 }
 
-function loadHistory() {
+async function loadHistory() {
     try {
         const stored = localStorage.getItem(STORAGE_KEY);
         if (stored) {
@@ -202,10 +202,21 @@ function loadHistory() {
     } catch (e) {
         console.warn('localStorage 读取失败:', e);
     }
+    // 兜底：从 history.json 文件读取
+    try {
+        const res = await fetch('./history.json?v=' + Date.now());
+        if (res.ok) {
+            const data = await res.json();
+            if (Object.keys(data).length > 0) {
+                historyData = data;
+                return;
+            }
+        }
+    } catch (e) {
+        console.warn('history.json 加载失败:', e);
+    }
     historyData = {};
-}
-
-function saveHistory() {
+}function saveHistory() {
     try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(historyData));
     } catch (e) {
@@ -514,7 +525,7 @@ function importData(file) {
 
 async function init() {
     checkEditMode();
-    loadHistory();
+    await loadHistory();
     await loadHeroes();
 
     if (allHeroes.length === 0) {

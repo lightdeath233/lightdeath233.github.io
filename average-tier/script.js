@@ -119,15 +119,35 @@ function renderGrid() {
                 ? "2px solid #1677ff"
                 : "1px solid transparent";
 
-            div.innerHTML = `
-                <img src="${hero.avatar}">
-                <div>${hero.name}</div>
-            `;
+            const img = document.createElement("img");
+            img.dataset.src = hero.avatar;
+            img.alt = hero.name;
+            img.decoding = "async";
+
+            const nameDiv = document.createElement("div");
+            nameDiv.textContent = hero.name;
+
+            div.appendChild(img);
+            div.appendChild(nameDiv);
 
             div.onclick = () => toggleHero(hero);
 
             grid.appendChild(div);
         });
+
+    // 用 IntersectionObserver 做图片懒加载：仅当图片接近视口时才设置 src
+    const lazyImgs = grid.querySelectorAll("img[data-src]");
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.removeAttribute("data-src");
+                obs.unobserve(img);
+            }
+        });
+    }, { rootMargin: "200px" });
+    lazyImgs.forEach(img => obs.observe(img));
 }
 
 
@@ -342,11 +362,25 @@ function renderRanking() {
     panel.innerHTML = list.map(item => `
         <div class="rank-item">
             <div style="width:40px;">#${item.rank}</div>
-            <img src="${item.avatar}">
+            <img data-src="${item.avatar}" alt="${item.name}" decoding="async">
             <div style="flex:1">${item.name}</div>
             <div>${item.avg.toFixed(2)}</div>
         </div>
     `).join("");
+
+    // 用 IntersectionObserver 做图片懒加载：仅当图片接近视口时才设置 src
+    const lazyImgs = panel.querySelectorAll("img[data-src]");
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.removeAttribute("data-src");
+                obs.unobserve(img);
+            }
+        });
+    }, { rootMargin: "200px" });
+    lazyImgs.forEach(img => obs.observe(img));
 }
 
 

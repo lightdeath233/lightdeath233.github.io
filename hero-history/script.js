@@ -268,13 +268,40 @@ function renderGrid() {
             if (h.name === tempSelected) {
                 div.classList.add('selected');
             }
-            div.innerHTML = '<img src="' + h.avatar + '" alt="' + h.name + '" loading="lazy"><div>' + h.name + '</div>';
+            const img = document.createElement('img');
+            img.dataset.src = h.avatar;
+            img.alt = h.name;
+            img.decoding = 'async';
+
+            const nameDiv = document.createElement('div');
+            nameDiv.textContent = h.name;
+
+            div.appendChild(img);
+            div.appendChild(nameDiv);
             div.onclick = () => {
                 tempSelected = h.name;
                 renderGrid();
             };
             heroGrid.appendChild(div);
         });
+
+    // 用 IntersectionObserver 做图片懒加载：仅当图片接近视口时才设置 src
+    const lazyImages = heroGrid.querySelectorAll('img[data-src]');
+    const imgObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                const src = img.dataset.src;
+                if (src) {
+                    img.src = src;
+                }
+                img.removeAttribute('data-src');
+                imgObserver.unobserve(img);
+            }
+        });
+    }, { rootMargin: '200px' });
+
+    lazyImages.forEach(img => imgObserver.observe(img));
 }
 
 function confirmSelection() {

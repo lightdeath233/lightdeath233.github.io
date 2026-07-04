@@ -106,6 +106,7 @@ const HERO_LIST = [
     { name: '夏洛特', avatar: 'images/夏洛特.jpg' },
     { name: '项羽', avatar: 'images/项羽.jpg' },
     { name: '小乔', avatar: 'images/小乔.jpg' },
+    { name: '心魔六耳', avatar: 'images/心魔六耳.jpg' },
     { name: '雅典娜', avatar: 'images/雅典娜.jpg' },
     { name: '亚连', avatar: 'images/亚连.jpg' },
     { name: '亚瑟', avatar: 'images/亚瑟.jpg' },

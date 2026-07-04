@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    配置
    ============================================================ */
 
@@ -354,7 +354,8 @@ function renderTimeline() {
 
     // 按年份分组
     let currentYear = '';
-    sorted.forEach((entry, idx) => {
+   sorted.forEach((entry, idx) => {
+        const originalIdx = entries.indexOf(entry);
         const year = entry.date.slice(0, 4);
         if (year !== currentYear) {
             currentYear = year;
@@ -386,7 +387,7 @@ function renderTimeline() {
             editBtn.textContent = '编辑';
             editBtn.onclick = (e) => {
                 e.stopPropagation();
-                startEdit(selectedHeroName, idx);
+                startEdit(selectedHeroName, originalIdx);
             };
 
             const delBtn = document.createElement('button');
@@ -394,7 +395,7 @@ function renderTimeline() {
             delBtn.textContent = '删除';
             delBtn.onclick = (e) => {
                 e.stopPropagation();
-                deleteEntry(selectedHeroName, idx);
+                deleteEntry(selectedHeroName, originalIdx);
             };
 
             actions.appendChild(editBtn);

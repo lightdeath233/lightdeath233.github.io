@@ -1,145 +1,145 @@
 /* ============================================================
-   ÅäÖÃ
+   é…ç½®
    ============================================================ */
 
 const SECRET_KEY = 'myedit';
 const STORAGE_KEY = 'hero_history_data';
 
 const HERO_LIST = [
-    { name: '°¢¹Å¶ä', avatar: 'images/°¢¹Å¶ä.jpg' },
-    { name: '°¢éğ', avatar: 'images/°¢éğ.jpg' },
-    { name: '°¬ÁÕ', avatar: 'images/°¬ÁÕ.jpg' },
-    { name: '°²ç÷À­', avatar: 'images/°²ç÷À­.jpg' },
-    { name: '°½Òş', avatar: 'images/°½Òş.jpg' },
-    { name: '°×Æğ', avatar: 'images/°×Æğ.jpg' },
-    { name: '°ÙÀïÊØÔ¼', avatar: 'images/°ÙÀïÊØÔ¼.jpg' },
-    { name: '°ÙÀïĞş²ß', avatar: 'images/°ÙÀïĞş²ß.jpg' },
-    { name: '±âÈµ', avatar: 'images/±âÈµ.jpg' },
-    { name: '²»Öª»ğÎè', avatar: 'images/²»Öª»ğÎè.jpg' },
-    { name: '²ÌÎÄ¼§', avatar: 'images/²ÌÎÄ¼§.jpg' },
-    { name: '²Ô', avatar: 'images/²Ô.jpg' },
-    { name: '²Ü²Ù', avatar: 'images/²Ü²Ù.jpg' },
-    { name: 'æÏ¶ğ', avatar: 'images/æÏ¶ğ.jpg' },
-    { name: '³ÌÒ§½ğ', avatar: 'images/³ÌÒ§½ğ.jpg' },
-    { name: 'ò¿Šg', avatar: 'images/ò¿Šg.jpg' },
-    { name: '´ïÄ¦', avatar: 'images/´ïÄ¦.jpg' },
-    { name: 'æ§¼º', avatar: 'images/æ§¼º.jpg' },
-    { name: '´óÇÇ', avatar: 'images/´óÇÇ.jpg' },
-    { name: '´óË¾Ãü', avatar: 'images/´óË¾Ãü.jpg' },
-    { name: '´óÓí', avatar: 'images/´óÓí.jpg' },
-    { name: 'µÒÈÊ½Ü', avatar: 'images/µÒÈÊ½Ü.jpg' },
-    { name: 'µäÎ¤', avatar: 'images/µäÎ¤.jpg' },
-    { name: 'õõ²õ', avatar: 'images/õõ²õ.jpg' },
-    { name: '¶«»ÊÌ«Ò»', avatar: 'images/¶«»ÊÌ«Ò».jpg' },
-    { name: '¶ÜÉ½', avatar: 'images/¶ÜÉ½.jpg' },
-    { name: '¶äÀòÑÇ', avatar: 'images/¶äÀòÑÇ.jpg' },
-    { name: '•›', avatar: 'images/•›.jpg' },
-    { name: 'Ù¤ÂŞ', avatar: 'images/Ù¤ÂŞ.jpg' },
-    { name: '¸É½«ÄªĞ°', avatar: 'images/¸É½«ÄªĞ°.jpg' },
-    { name: '¸ß½¥Àë', avatar: 'images/¸ß½¥Àë.jpg' },
-    { name: '¸êæ«', avatar: 'images/¸êæ«.jpg' },
-    { name: '¹«ËïÀë', avatar: 'images/¹«ËïÀë.jpg' },
-    { name: '¹¬±¾Îä²Ø', avatar: 'images/¹¬±¾Îä²Ø.jpg' },
-    { name: '¹ØÓğ', avatar: 'images/¹ØÓğ.jpg' },
-    { name: '¹í¹È×Ó', avatar: 'images/¹í¹È×Ó.jpg' },
-    { name: 'º£Åµ', avatar: 'images/º£Åµ.jpg' },
-    { name: 'º£ÔÂ', avatar: 'images/º£ÔÂ.jpg' },
-    { name: 'º«ĞÅ', avatar: 'images/º«ĞÅ.jpg' },
-    { name: 'ºóôà', avatar: 'images/ºóôà.jpg' },
-    { name: '»¨Ä¾À¼', avatar: 'images/»¨Ä¾À¼.jpg' },
-    { name: '»ÆÖÒ', avatar: 'images/»ÆÖÒ.jpg' },
-    { name: '¼§Ğ¡Âú', avatar: 'images/¼§Ğ¡Âú.jpg' },
-    { name: '½ª×ÓÑÀ', avatar: 'images/½ª×ÓÑÀ.jpg' },
-    { name: '½ğ²õ', avatar: 'images/½ğ²õ.jpg' },
-    { name: '¾µ', avatar: 'images/¾µ.jpg' },
-    { name: 'éÙÓÒ¾©', avatar: 'images/éÙÓÒ¾©.jpg' },
-    { name: 'îø', avatar: 'images/îø.jpg' },
-    { name: '¿Õ¿Õ¶ù', avatar: 'images/¿Õ¿Õ¶ù.jpg' },
-    { name: '¿ñÌú', avatar: 'images/¿ñÌú.jpg' },
-    { name: 'À³Î÷°Â', avatar: 'images/À³Î÷°Â.jpg' },
-    { name: 'À¼ÁêÍõ', avatar: 'images/À¼ÁêÍõ.jpg' },
-    { name: 'À½', avatar: 'images/À½.jpg' },
-    { name: 'ÀÏ·ò×Ó', avatar: 'images/ÀÏ·ò×Ó.jpg' },
-    { name: 'Àî°×', avatar: 'images/Àî°×.jpg' },
-    { name: 'ÀîĞÅ', avatar: 'images/ÀîĞÅ.jpg' },
-    { name: 'ÀîÔª·¼', avatar: 'images/ÀîÔª·¼.jpg' },
-    { name: 'Á®ÆÄ', avatar: 'images/Á®ÆÄ.jpg' },
-    { name: 'Áõ°î', avatar: 'images/Áõ°î.jpg' },
-    { name: 'Áõ±¸', avatar: 'images/Áõ±¸.jpg' },
-    { name: 'Áõìø', avatar: 'images/Áõìø.jpg' },
-    { name: 'Â³°à´óÊ¦', avatar: 'images/Â³°à´óÊ¦.jpg' },
-    { name: 'Â³°àÆßºÅ', avatar: 'images/Â³°àÆßºÅ.jpg' },
-    { name: 'Â¶ÄÈ', avatar: 'images/Â¶ÄÈ.jpg' },
-    { name: 'ÂÀ²¼', avatar: 'images/ÂÀ²¼.jpg' },
-    { name: 'Âí³¬', avatar: 'images/Âí³¬.jpg' },
-    { name: 'Âí¿É²¨ÂŞ', avatar: 'images/Âí¿É²¨ÂŞ.jpg' },
-    { name: 'ÃÉÌñ', avatar: 'images/ÃÉÌñ.jpg' },
-    { name: 'ÃÉ ë', avatar: 'images/ÃÉ ë.jpg' },
-    { name: 'ÃÎÆæ', avatar: 'images/ÃÎÆæ.jpg' },
-    { name: 'Ã×À³µÒ', avatar: 'images/Ã×À³µÒ.jpg' },
-    { name: 'ØÂÔÂ', avatar: 'images/ØÂÔÂ.jpg' },
-    { name: 'Ã÷ÊÀÒş', avatar: 'images/Ã÷ÊÀÒş.jpg' },
-    { name: 'Ä«×Ó', avatar: 'images/Ä«×Ó.jpg' },
-    { name: 'ÄÄß¸', avatar: 'images/ÄÄß¸.jpg' },
-    { name: 'ÄÈ¿ÉÂ¶Â¶', avatar: 'images/ÄÈ¿ÉÂ¶Â¶.jpg' },
-    { name: 'Å£Ä§', avatar: 'images/Å£Ä§.jpg' },
-    { name: 'Å®æ´', avatar: 'images/Å®æ´.jpg' },
-    { name: 'ÅÌ¹Å', avatar: 'images/ÅÌ¹Å.jpg' },
-    { name: 'ÅáÇÜ»¢', avatar: 'images/ÅáÇÜ»¢.jpg' },
-    { name: 'É£Æô', avatar: 'images/É£Æô.jpg' },
-    { name: 'ÉÏ¹ÙÍñ¶ù', avatar: 'images/ÉÏ¹ÙÍñ¶ù.jpg' },
-    { name: 'ÉÙË¾Ôµ', avatar: 'images/ÉÙË¾Ôµ.jpg' },
-    { name: 'ÉòÃÎÏª', avatar: 'images/ÉòÃÎÏª.jpg' },
-    { name: 'Ë¾¿ÕÕğ', avatar: 'images/Ë¾¿ÕÕğ.jpg' },
-    { name: 'Ë¾ÂíÜ²', avatar: 'images/Ë¾ÂíÜ².jpg' },
-    { name: 'ËÕÁÒ', avatar: 'images/ËÕÁÒ.jpg' },
-    { name: 'Ëïë÷', avatar: 'images/Ëïë÷.jpg' },
-    { name: 'Ëï²ß', avatar: 'images/Ëï²ß.jpg' },
-    { name: 'ËïÈ¨', avatar: 'images/ËïÈ¨.jpg' },
-    { name: 'ËïÉĞÏã', avatar: 'images/ËïÉĞÏã.jpg' },
-    { name: 'ËïÎò¿Õ', avatar: 'images/ËïÎò¿Õ.jpg' },
-    { name: 'Ì«ÒÒÕæÈË', avatar: 'images/Ì«ÒÒÕæÈË.jpg' },
-    { name: 'ÍõÕÑ¾ı', avatar: 'images/ÍõÕÑ¾ı.jpg' },
-    { name: 'ÎäÔòÌì', avatar: 'images/ÎäÔòÌì.jpg' },
-    { name: 'Î÷Ê©', avatar: 'images/Î÷Ê©.jpg' },
-    { name: 'ÏÄºîª', avatar: 'images/ÏÄºîª.jpg' },
-    { name: 'ÏÄÂåÌØ', avatar: 'images/ÏÄÂåÌØ.jpg' },
-    { name: 'ÏîÓğ', avatar: 'images/ÏîÓğ.jpg' },
-    { name: 'Ğ¡ÇÇ', avatar: 'images/Ğ¡ÇÇ.jpg' },
-    { name: 'ÑÅµäÄÈ', avatar: 'images/ÑÅµäÄÈ.jpg' },
-    { name: 'ÑÇÁ¬', avatar: 'images/ÑÇÁ¬.jpg' },
-    { name: 'ÑÇÉª', avatar: 'images/ÑÇÉª.jpg' },
-    { name: 'Ñîê¯', avatar: 'images/Ñîê¯.jpg' },
-    { name: 'ÑîÓñ»·', avatar: 'images/ÑîÓñ»·.jpg' },
-    { name: 'Ñş', avatar: 'images/Ñş.jpg' },
-    { name: 'ê×', avatar: 'images/ê×.jpg' },
-    { name: 'ŞÄĞÇ', avatar: 'images/ŞÄĞÇ.jpg' },
-    { name: 'ÙøÕş', avatar: 'images/ÙøÕş.jpg' },
-    { name: 'Ó°', avatar: 'images/Ó°.jpg' },
-    { name: 'Óİ¼§', avatar: 'images/Óİ¼§.jpg' },
-    { name: 'Ôª¸è', avatar: 'images/Ôª¸è.jpg' },
-    { name: 'ÔªÁ÷Ö®×Ó(´Ì¿Í)', avatar: 'images/ÔªÁ÷Ö®×Ó(´Ì¿Í).jpg' },
-    { name: 'ÔªÁ÷Ö®×Ó(·¨Ê¦)', avatar: 'images/ÔªÁ÷Ö®×Ó(·¨Ê¦).jpg' },
-    { name: 'ÔªÁ÷Ö®×Ó(¸¨Öú)', avatar: 'images/ÔªÁ÷Ö®×Ó(¸¨Öú).jpg' },
-    { name: 'ÔªÁ÷Ö®×Ó(ÉäÊÖ)', avatar: 'images/ÔªÁ÷Ö®×Ó(ÉäÊÖ).jpg' },
-    { name: 'ÔªÁ÷Ö®×Ó(Ì¹¿Ë)', avatar: 'images/ÔªÁ÷Ö®×Ó(Ì¹¿Ë).jpg' },
-    { name: 'ÔÆÓ§', avatar: 'images/ÔÆÓ§.jpg' },
-    { name: 'ÔÆÖĞ¾ı', avatar: 'images/ÔÆÖĞ¾ı.jpg' },
-    { name: 'ÕÅ·É', avatar: 'images/ÕÅ·É.jpg' },
-    { name: 'ÕÅÁ¼', avatar: 'images/ÕÅÁ¼.jpg' },
-    { name: 'ÕÔ»³Õæ', avatar: 'images/ÕÔ»³Õæ.jpg' },
-    { name: 'ÕÔÔÆ', avatar: 'images/ÕÔÔÆ.jpg' },
-    { name: 'Õç¼§', avatar: 'images/Õç¼§.jpg' },
-    { name: 'ÖÓØ¸', avatar: 'images/ÖÓØ¸.jpg' },
-    { name: 'ÖÓÎŞÑŞ', avatar: 'images/ÖÓÎŞÑŞ.jpg' },
-    { name: 'ÖÜè¤', avatar: 'images/ÖÜè¤.jpg' },
-    { name: 'Öî¸ğÁÁ', avatar: 'images/Öî¸ğÁÁ.jpg' },
-    { name: 'Öí°Ë½ä', avatar: 'images/Öí°Ë½ä.jpg' },
-    { name: '×¯ÖÜ', avatar: 'images/×¯ÖÜ.jpg' }
+    { name: 'é˜¿å¤æœµ', avatar: 'images/é˜¿å¤æœµ.jpg' },
+    { name: 'é˜¿è½²', avatar: 'images/é˜¿è½².jpg' },
+    { name: 'è‰¾ç³', avatar: 'images/è‰¾ç³.jpg' },
+    { name: 'å®‰çªæ‹‰', avatar: 'images/å®‰çªæ‹‰.jpg' },
+    { name: 'æ•–éš', avatar: 'images/æ•–éš.jpg' },
+    { name: 'ç™½èµ·', avatar: 'images/ç™½èµ·.jpg' },
+    { name: 'ç™¾é‡Œå®ˆçº¦', avatar: 'images/ç™¾é‡Œå®ˆçº¦.jpg' },
+    { name: 'ç™¾é‡Œç„ç­–', avatar: 'images/ç™¾é‡Œç„ç­–.jpg' },
+    { name: 'æ‰é¹Š', avatar: 'images/æ‰é¹Š.jpg' },
+    { name: 'ä¸çŸ¥ç«èˆ', avatar: 'images/ä¸çŸ¥ç«èˆ.jpg' },
+    { name: 'è”¡æ–‡å§¬', avatar: 'images/è”¡æ–‡å§¬.jpg' },
+    { name: 'è‹', avatar: 'images/è‹.jpg' },
+    { name: 'æ›¹æ“', avatar: 'images/æ›¹æ“.jpg' },
+    { name: 'å«¦å¨¥', avatar: 'images/å«¦å¨¥.jpg' },
+    { name: 'ç¨‹å’¬é‡‘', avatar: 'images/ç¨‹å’¬é‡‘.jpg' },
+    { name: 'èš©å¥¼', avatar: 'images/èš©å¥¼.jpg' },
+    { name: 'è¾¾æ‘©', avatar: 'images/è¾¾æ‘©.jpg' },
+    { name: 'å¦²å·±', avatar: 'images/å¦²å·±.jpg' },
+    { name: 'å¤§ä¹”', avatar: 'images/å¤§ä¹”.jpg' },
+    { name: 'å¤§å¸å‘½', avatar: 'images/å¤§å¸å‘½.jpg' },
+    { name: 'å¤§ç¦¹', avatar: 'images/å¤§ç¦¹.jpg' },
+    { name: 'ç‹„ä»æ°', avatar: 'images/ç‹„ä»æ°.jpg' },
+    { name: 'å…¸éŸ¦', avatar: 'images/å…¸éŸ¦.jpg' },
+    { name: 'è²‚è‰', avatar: 'images/è²‚è‰.jpg' },
+    { name: 'ä¸œçš‡å¤ªä¸€', avatar: 'images/ä¸œçš‡å¤ªä¸€.jpg' },
+    { name: 'ç›¾å±±', avatar: 'images/ç›¾å±±.jpg' },
+    { name: 'æœµè‰äºš', avatar: 'images/æœµè‰äºš.jpg' },
+    { name: 'æšƒ', avatar: 'images/æšƒ.jpg' },
+    { name: 'ä¼½ç½—', avatar: 'images/ä¼½ç½—.jpg' },
+    { name: 'å¹²å°†è«é‚ª', avatar: 'images/å¹²å°†è«é‚ª.jpg' },
+    { name: 'é«˜æ¸ç¦»', avatar: 'images/é«˜æ¸ç¦».jpg' },
+    { name: 'æˆˆå¨…', avatar: 'images/æˆˆå¨….jpg' },
+    { name: 'å…¬å­™ç¦»', avatar: 'images/å…¬å­™ç¦».jpg' },
+    { name: 'å®«æœ¬æ­¦è—', avatar: 'images/å®«æœ¬æ­¦è—.jpg' },
+    { name: 'å…³ç¾½', avatar: 'images/å…³ç¾½.jpg' },
+    { name: 'é¬¼è°·å­', avatar: 'images/é¬¼è°·å­.jpg' },
+    { name: 'æµ·è¯º', avatar: 'images/æµ·è¯º.jpg' },
+    { name: 'æµ·æœˆ', avatar: 'images/æµ·æœˆ.jpg' },
+    { name: 'éŸ©ä¿¡', avatar: 'images/éŸ©ä¿¡.jpg' },
+    { name: 'åç¾¿', avatar: 'images/åç¾¿.jpg' },
+    { name: 'èŠ±æœ¨å…°', avatar: 'images/èŠ±æœ¨å…°.jpg' },
+    { name: 'é»„å¿ ', avatar: 'images/é»„å¿ .jpg' },
+    { name: 'å§¬å°æ»¡', avatar: 'images/å§¬å°æ»¡.jpg' },
+    { name: 'å§œå­ç‰™', avatar: 'images/å§œå­ç‰™.jpg' },
+    { name: 'é‡‘è‰', avatar: 'images/é‡‘è‰.jpg' },
+    { name: 'é•œ', avatar: 'images/é•œ.jpg' },
+    { name: 'æ©˜å³äº¬', avatar: 'images/æ©˜å³äº¬.jpg' },
+    { name: 'é“ ', avatar: 'images/é“ .jpg' },
+    { name: 'ç©ºç©ºå„¿', avatar: 'images/ç©ºç©ºå„¿.jpg' },
+    { name: 'ç‹‚é“', avatar: 'images/ç‹‚é“.jpg' },
+    { name: 'è±è¥¿å¥¥', avatar: 'images/è±è¥¿å¥¥.jpg' },
+    { name: 'å…°é™µç‹', avatar: 'images/å…°é™µç‹.jpg' },
+    { name: 'æ¾œ', avatar: 'images/æ¾œ.jpg' },
+    { name: 'è€å¤«å­', avatar: 'images/è€å¤«å­.jpg' },
+    { name: 'æç™½', avatar: 'images/æç™½.jpg' },
+    { name: 'æä¿¡', avatar: 'images/æä¿¡.jpg' },
+    { name: 'æå…ƒèŠ³', avatar: 'images/æå…ƒèŠ³.jpg' },
+    { name: 'å»‰é¢‡', avatar: 'images/å»‰é¢‡.jpg' },
+    { name: 'åˆ˜é‚¦', avatar: 'images/åˆ˜é‚¦.jpg' },
+    { name: 'åˆ˜å¤‡', avatar: 'images/åˆ˜å¤‡.jpg' },
+    { name: 'åˆ˜ç¦…', avatar: 'images/åˆ˜ç¦….jpg' },
+    { name: 'é²ç­å¤§å¸ˆ', avatar: 'images/é²ç­å¤§å¸ˆ.jpg' },
+    { name: 'é²ç­ä¸ƒå·', avatar: 'images/é²ç­ä¸ƒå·.jpg' },
+    { name: 'éœ²å¨œ', avatar: 'images/éœ²å¨œ.jpg' },
+    { name: 'å•å¸ƒ', avatar: 'images/å•å¸ƒ.jpg' },
+    { name: 'é©¬è¶…', avatar: 'images/é©¬è¶….jpg' },
+    { name: 'é©¬å¯æ³¢ç½—', avatar: 'images/é©¬å¯æ³¢ç½—.jpg' },
+    { name: 'è’™æ¬', avatar: 'images/è’™æ¬.jpg' },
+    { name: 'è’™çŠ½', avatar: 'images/è’™çŠ½.jpg' },
+    { name: 'æ¢¦å¥‡', avatar: 'images/æ¢¦å¥‡.jpg' },
+    { name: 'ç±³è±ç‹„', avatar: 'images/ç±³è±ç‹„.jpg' },
+    { name: 'èŠˆæœˆ', avatar: 'images/èŠˆæœˆ.jpg' },
+    { name: 'æ˜ä¸–éš', avatar: 'images/æ˜ä¸–éš.jpg' },
+    { name: 'å¢¨å­', avatar: 'images/å¢¨å­.jpg' },
+    { name: 'å“ªå’', avatar: 'images/å“ªå’.jpg' },
+    { name: 'å¨œå¯éœ²éœ²', avatar: 'images/å¨œå¯éœ²éœ².jpg' },
+    { name: 'ç‰›é­”', avatar: 'images/ç‰›é­”.jpg' },
+    { name: 'å¥³å¨²', avatar: 'images/å¥³å¨².jpg' },
+    { name: 'ç›˜å¤', avatar: 'images/ç›˜å¤.jpg' },
+    { name: 'è£´æ“’è™', avatar: 'images/è£´æ“’è™.jpg' },
+    { name: 'æ¡‘å¯', avatar: 'images/æ¡‘å¯.jpg' },
+    { name: 'ä¸Šå®˜å©‰å„¿', avatar: 'images/ä¸Šå®˜å©‰å„¿.jpg' },
+    { name: 'å°‘å¸ç¼˜', avatar: 'images/å°‘å¸ç¼˜.jpg' },
+    { name: 'æ²ˆæ¢¦æºª', avatar: 'images/æ²ˆæ¢¦æºª.jpg' },
+    { name: 'å¸ç©ºéœ‡', avatar: 'images/å¸ç©ºéœ‡.jpg' },
+    { name: 'å¸é©¬æ‡¿', avatar: 'images/å¸é©¬æ‡¿.jpg' },
+    { name: 'è‹çƒˆ', avatar: 'images/è‹çƒˆ.jpg' },
+    { name: 'å­™è†‘', avatar: 'images/å­™è†‘.jpg' },
+    { name: 'å­™ç­–', avatar: 'images/å­™ç­–.jpg' },
+    { name: 'å­™æƒ', avatar: 'images/å­™æƒ.jpg' },
+    { name: 'å­™å°šé¦™', avatar: 'images/å­™å°šé¦™.jpg' },
+    { name: 'å­™æ‚Ÿç©º', avatar: 'images/å­™æ‚Ÿç©º.jpg' },
+    { name: 'å¤ªä¹™çœŸäºº', avatar: 'images/å¤ªä¹™çœŸäºº.jpg' },
+    { name: 'ç‹æ˜­å›', avatar: 'images/ç‹æ˜­å›.jpg' },
+    { name: 'æ­¦åˆ™å¤©', avatar: 'images/æ­¦åˆ™å¤©.jpg' },
+    { name: 'è¥¿æ–½', avatar: 'images/è¥¿æ–½.jpg' },
+    { name: 'å¤ä¾¯æƒ‡', avatar: 'images/å¤ä¾¯æƒ‡.jpg' },
+    { name: 'å¤æ´›ç‰¹', avatar: 'images/å¤æ´›ç‰¹.jpg' },
+    { name: 'é¡¹ç¾½', avatar: 'images/é¡¹ç¾½.jpg' },
+    { name: 'å°ä¹”', avatar: 'images/å°ä¹”.jpg' },
+    { name: 'é›…å…¸å¨œ', avatar: 'images/é›…å…¸å¨œ.jpg' },
+    { name: 'äºšè¿', avatar: 'images/äºšè¿.jpg' },
+    { name: 'äºšç‘Ÿ', avatar: 'images/äºšç‘Ÿ.jpg' },
+    { name: 'æ¨æˆ¬', avatar: 'images/æ¨æˆ¬.jpg' },
+    { name: 'æ¨ç‰ç¯', avatar: 'images/æ¨ç‰ç¯.jpg' },
+    { name: 'ç‘¶', avatar: 'images/ç‘¶.jpg' },
+    { name: 'æ›œ', avatar: 'images/æ›œ.jpg' },
+    { name: 'å¼ˆæ˜Ÿ', avatar: 'images/å¼ˆæ˜Ÿ.jpg' },
+    { name: 'å¬´æ”¿', avatar: 'images/å¬´æ”¿.jpg' },
+    { name: 'å½±', avatar: 'images/å½±.jpg' },
+    { name: 'è™å§¬', avatar: 'images/è™å§¬.jpg' },
+    { name: 'å…ƒæ­Œ', avatar: 'images/å…ƒæ­Œ.jpg' },
+    { name: 'å…ƒæµä¹‹å­(åˆºå®¢)', avatar: 'images/å…ƒæµä¹‹å­(åˆºå®¢).jpg' },
+    { name: 'å…ƒæµä¹‹å­(æ³•å¸ˆ)', avatar: 'images/å…ƒæµä¹‹å­(æ³•å¸ˆ).jpg' },
+    { name: 'å…ƒæµä¹‹å­(è¾…åŠ©)', avatar: 'images/å…ƒæµä¹‹å­(è¾…åŠ©).jpg' },
+    { name: 'å…ƒæµä¹‹å­(å°„æ‰‹)', avatar: 'images/å…ƒæµä¹‹å­(å°„æ‰‹).jpg' },
+    { name: 'å…ƒæµä¹‹å­(å¦å…‹)', avatar: 'images/å…ƒæµä¹‹å­(å¦å…‹).jpg' },
+    { name: 'äº‘ç¼¨', avatar: 'images/äº‘ç¼¨.jpg' },
+    { name: 'äº‘ä¸­å›', avatar: 'images/äº‘ä¸­å›.jpg' },
+    { name: 'å¼ é£', avatar: 'images/å¼ é£.jpg' },
+    { name: 'å¼ è‰¯', avatar: 'images/å¼ è‰¯.jpg' },
+    { name: 'èµµæ€€çœŸ', avatar: 'images/èµµæ€€çœŸ.jpg' },
+    { name: 'èµµäº‘', avatar: 'images/èµµäº‘.jpg' },
+    { name: 'ç”„å§¬', avatar: 'images/ç”„å§¬.jpg' },
+    { name: 'é’Ÿé¦—', avatar: 'images/é’Ÿé¦—.jpg' },
+    { name: 'é’Ÿæ— è‰³', avatar: 'images/é’Ÿæ— è‰³.jpg' },
+    { name: 'å‘¨ç‘œ', avatar: 'images/å‘¨ç‘œ.jpg' },
+    { name: 'è¯¸è‘›äº®', avatar: 'images/è¯¸è‘›äº®.jpg' },
+    { name: 'çŒªå…«æˆ’', avatar: 'images/çŒªå…«æˆ’.jpg' },
+    { name: 'åº„å‘¨', avatar: 'images/åº„å‘¨.jpg' }
 ];
 
 /* ============================================================
-   ×´Ì¬
+   çŠ¶æ€
    ============================================================ */
 
 let allHeroes = [];
@@ -149,7 +149,7 @@ let isEditMode = false;
 let editingIndex = -1;
 
 /* ============================================================
-   DOM ÒıÓÃ
+   DOM å¼•ç”¨
    ============================================================ */
 
 const $ = (id) => document.getElementById(id);
@@ -172,7 +172,7 @@ const heroGrid        = $('heroGrid');
 const confirmSelect   = $('confirmSelect');
 
 /* ============================================================
-   ¹¤¾ßº¯Êı
+   å·¥å…·å‡½æ•°
    ============================================================ */
 
 function debounce(fn, delay) {
@@ -184,11 +184,11 @@ function debounce(fn, delay) {
 }
 
 /* ============================================================
-   Êı¾İ¼ÓÔØ
+   æ•°æ®åŠ è½½
    ============================================================ */
 
 async function loadHeroes() {
-    // Ê¹ÓÃÄÚÇ¶µÄÓ¢ĞÛÁĞ±í£¬±ÜÃâ¿çÄ¿Â¼ fetch ÎÊÌâ
+    // ä½¿ç”¨å†…åµŒçš„è‹±é›„åˆ—è¡¨ï¼Œé¿å…è·¨ç›®å½• fetch é—®é¢˜
     allHeroes = HERO_LIST;
 }
 
@@ -200,9 +200,9 @@ async function loadHistory() {
             return;
         }
     } catch (e) {
-        console.warn('localStorage ¶ÁÈ¡Ê§°Ü:', e);
+        console.warn('localStorage è¯»å–å¤±è´¥:', e);
     }
-    // ¶µµ×£º´Ó history.json ÎÄ¼ş¶ÁÈ¡
+    // å…œåº•ï¼šä» history.json æ–‡ä»¶è¯»å–
     try {
         const res = await fetch('./history.json?v=' + Date.now());
         if (res.ok) {
@@ -213,19 +213,19 @@ async function loadHistory() {
             }
         }
     } catch (e) {
-        console.warn('history.json ¼ÓÔØÊ§°Ü:', e);
+        console.warn('history.json åŠ è½½å¤±è´¥:', e);
     }
     historyData = {};
 }function saveHistory() {
     try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(historyData));
     } catch (e) {
-        console.warn('localStorage Ğ´ÈëÊ§°Ü:', e);
+        console.warn('localStorage å†™å…¥å¤±è´¥:', e);
     }
 }
 
 /* ============================================================
-   ±à¼­Ä£Ê½¼ì²â
+   ç¼–è¾‘æ¨¡å¼æ£€æµ‹
    ============================================================ */
 
 function checkEditMode() {
@@ -241,7 +241,7 @@ function checkEditMode() {
 }
 
 /* ============================================================
-   µ¯´°
+   å¼¹çª—
    ============================================================ */
 
 let tempSelected = '';
@@ -285,7 +285,7 @@ function renderGrid() {
             heroGrid.appendChild(div);
         });
 
-    // ÓÃ IntersectionObserver ×öÍ¼Æ¬ÀÁ¼ÓÔØ£º½öµ±Í¼Æ¬½Ó½üÊÓ¿ÚÊ±²ÅÉèÖÃ src
+    // ç”¨ IntersectionObserver åšå›¾ç‰‡æ‡’åŠ è½½ï¼šä»…å½“å›¾ç‰‡æ¥è¿‘è§†å£æ—¶æ‰è®¾ç½® src
     const lazyImages = heroGrid.querySelectorAll('img[data-src]');
     const imgObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -313,11 +313,11 @@ function confirmSelection() {
 
 function updateSelectedHeroText() {
     if (!selectedHeroName) {
-        selectedHeroEl.textContent = 'µ±Ç°Ó¢ĞÛ£ºÎ´Ñ¡Ôñ';
+        selectedHeroEl.textContent = 'å½“å‰è‹±é›„ï¼šæœªé€‰æ‹©';
         heroInfo.classList.add('hidden');
         return;
     }
-    selectedHeroEl.textContent = 'µ±Ç°Ó¢ĞÛ£º' + selectedHeroName;
+    selectedHeroEl.textContent = 'å½“å‰è‹±é›„ï¼š' + selectedHeroName;
     heroInfo.classList.remove('hidden');
     const hero = allHeroes.find(h => h.name === selectedHeroName);
     if (hero) {
@@ -328,31 +328,31 @@ function updateSelectedHeroText() {
 }
 
 /* ============================================================
-   Ê±¼äÖáäÖÈ¾
+   æ—¶é—´è½´æ¸²æŸ“
    ============================================================ */
 
 function renderTimeline() {
     timeline.innerHTML = '';
 
     if (!selectedHeroName) {
-        emptyState.textContent = 'ÇëÑ¡ÔñÒ»¸öÓ¢ĞÛ²é¿´µ÷ÕûÀúÊ·';
+        emptyState.textContent = 'è¯·é€‰æ‹©ä¸€ä¸ªè‹±é›„æŸ¥çœ‹è°ƒæ•´å†å²';
         return;
     }
 
     const entries = historyData[selectedHeroName];
 
     if (!entries || entries.length === 0) {
-        emptyState.textContent = selectedHeroName + ' ÔİÎŞµ÷Õû¼ÇÂ¼';
-        heroCount.textContent = '¹² 0 ´Îµ÷Õû';
+        emptyState.textContent = selectedHeroName + ' æš‚æ— è°ƒæ•´è®°å½•';
+        heroCount.textContent = 'å…± 0 æ¬¡è°ƒæ•´';
         return;
     }
 
-    heroCount.textContent = '¹² ' + entries.length + ' ´Îµ÷Õû';
+    heroCount.textContent = 'å…± ' + entries.length + ' æ¬¡è°ƒæ•´';
 
-    // °´ÈÕÆÚµ¹ĞòÅÅÁĞ
+    // æŒ‰æ—¥æœŸå€’åºæ’åˆ—
     const sorted = [...entries].sort((a, b) => b.date.localeCompare(a.date));
 
-    // °´Äê·İ·Ö×é
+    // æŒ‰å¹´ä»½åˆ†ç»„
     let currentYear = '';
     sorted.forEach((entry, idx) => {
         const year = entry.date.slice(0, 4);
@@ -360,7 +360,7 @@ function renderTimeline() {
             currentYear = year;
             const div = document.createElement('div');
             div.className = 'year-divider';
-            div.textContent = year + 'Äê';
+            div.textContent = year + 'å¹´';
             timeline.appendChild(div);
         }
         const card = document.createElement('div');
@@ -383,7 +383,7 @@ function renderTimeline() {
 
             const editBtn = document.createElement('button');
             editBtn.className = 'btn-edit';
-            editBtn.textContent = '±à¼­';
+            editBtn.textContent = 'ç¼–è¾‘';
             editBtn.onclick = (e) => {
                 e.stopPropagation();
                 startEdit(selectedHeroName, idx);
@@ -391,7 +391,7 @@ function renderTimeline() {
 
             const delBtn = document.createElement('button');
             delBtn.className = 'btn-delete';
-            delBtn.textContent = 'É¾³ı';
+            delBtn.textContent = 'åˆ é™¤';
             delBtn.onclick = (e) => {
                 e.stopPropagation();
                 deleteEntry(selectedHeroName, idx);
@@ -407,12 +407,12 @@ function renderTimeline() {
 }
 
 /* ============================================================
-   ±à¼­¹¦ÄÜ
+   ç¼–è¾‘åŠŸèƒ½
    ============================================================ */
 
 function startAdd() {
     if (!selectedHeroName) {
-        alert('ÇëÏÈÑ¡ÔñÒ»¸öÓ¢ĞÛ');
+        alert('è¯·å…ˆé€‰æ‹©ä¸€ä¸ªè‹±é›„');
         return;
     }
     editingIndex = -1;
@@ -433,7 +433,7 @@ function showEditor(date, content) {
 
     const editor = document.createElement('div');
     editor.className = 'editor-inline';
-    editor.innerHTML = '<input type="date" id="editorDate" value="' + date + '"><textarea id="editorContent" placeholder="µ÷ÕûÄÚÈİ...">' + content + '</textarea><div class="form-actions"><button class="btn-save" id="editorSave">±£´æ</button><button class="btn-cancel" id="editorCancel">È¡Ïû</button></div>';
+    editor.innerHTML = '<input type="date" id="editorDate" value="' + date + '"><textarea id="editorContent" placeholder="è°ƒæ•´å†…å®¹...">' + content + '</textarea><div class="form-actions"><button class="btn-save" id="editorSave">ä¿å­˜</button><button class="btn-cancel" id="editorCancel">å–æ¶ˆ</button></div>';
 
     timeline.insertBefore(editor, timeline.firstChild);
 
@@ -450,12 +450,12 @@ function saveEditor() {
     const content = contentInput.value.trim();
 
     if (!date) {
-        alert('ÇëÑ¡ÔñÈÕÆÚ');
+        alert('è¯·é€‰æ‹©æ—¥æœŸ');
         dateInput.focus();
         return;
     }
     if (!content) {
-        alert('ÇëÊäÈëµ÷ÕûÄÚÈİ');
+        alert('è¯·è¾“å…¥è°ƒæ•´å†…å®¹');
         contentInput.focus();
         return;
     }
@@ -482,7 +482,7 @@ function cancelEditor() {
 }
 
 function deleteEntry(heroName, index) {
-    if (!confirm('È·¶¨ÒªÉ¾³ıÕâÌõµ÷Õû¼ÇÂ¼Âğ£¿')) return;
+    if (!confirm('ç¡®å®šè¦åˆ é™¤è¿™æ¡è°ƒæ•´è®°å½•å—ï¼Ÿ')) return;
 
     const entries = historyData[heroName];
     if (!entries) return;
@@ -497,7 +497,7 @@ function deleteEntry(heroName, index) {
 }
 
 /* ============================================================
-   µ¼³ö / µ¼Èë
+   å¯¼å‡º / å¯¼å…¥
    ============================================================ */
 
 function exportData() {
@@ -521,33 +521,33 @@ function importData(file) {
         try {
             const data = JSON.parse(e.target.result);
             if (typeof data !== 'object' || Array.isArray(data)) {
-                throw new Error('¸ñÊ½²»ÕıÈ·');
+                throw new Error('æ ¼å¼ä¸æ­£ç¡®');
             }
             for (const key of Object.keys(data)) {
                 if (!Array.isArray(data[key])) {
-                    throw new Error('"' + key + '" µÄÖµ²»ÊÇÊı×é');
+                    throw new Error('"' + key + '" çš„å€¼ä¸æ˜¯æ•°ç»„');
                 }
                 for (const item of data[key]) {
                     if (!item.date || !item.content) {
-                        throw new Error('"' + key + '" ÖĞµÄÊı¾İÈ±ÉÙ date »ò content ×Ö¶Î');
+                        throw new Error('"' + key + '" ä¸­çš„æ•°æ®ç¼ºå°‘ date æˆ– content å­—æ®µ');
                     }
                 }
             }
-            if (!confirm('µ¼Èë½«Ìæ»»µ±Ç°ËùÓĞÊı¾İ£¬È·¶¨Âğ£¿')) return;
+            if (!confirm('å¯¼å…¥å°†æ›¿æ¢å½“å‰æ‰€æœ‰æ•°æ®ï¼Œç¡®å®šå—ï¼Ÿ')) return;
             historyData = data;
             saveHistory();
             renderTimeline();
             updateSelectedHeroText();
-            alert('µ¼Èë³É¹¦£¡¹² ' + Object.keys(data).length + ' ¸öÓ¢ĞÛµÄÊı¾İ');
+            alert('å¯¼å…¥æˆåŠŸï¼å…± ' + Object.keys(data).length + ' ä¸ªè‹±é›„çš„æ•°æ®');
         } catch (err) {
-            alert('µ¼ÈëÊ§°Ü£º' + err.message);
+            alert('å¯¼å…¥å¤±è´¥ï¼š' + err.message);
         }
     };
     reader.readAsText(file);
 }
 
 /* ============================================================
-   ³õÊ¼»¯
+   åˆå§‹åŒ–
    ============================================================ */
 
 async function init() {
@@ -556,7 +556,7 @@ async function init() {
     await loadHeroes();
 
     if (allHeroes.length === 0) {
-        emptyState.textContent = 'Ó¢ĞÛÁĞ±í¼ÓÔØÊ§°Ü£¬Çë¼ì²éÍøÂç';
+        emptyState.textContent = 'è‹±é›„åˆ—è¡¨åŠ è½½å¤±è´¥ï¼Œè¯·æ£€æŸ¥ç½‘ç»œ';
         return;
     }
 
